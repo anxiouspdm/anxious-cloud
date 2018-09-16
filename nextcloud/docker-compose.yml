@@ -1,0 +1,48 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    container_name: mysql
+    restart: always
+    volumes:
+      - "${DATA_DIR}/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: nopassword
+
+  nextcloud:
+    image: nextcloud:${NEXTCLOUD_VERSION}
+    container_name: nextcloud
+    restart: always
+    volumes:
+      - "${DATA_DIR}/nextcloud:/var/www/html"
+      - "${DATA_DIR}/mysql:/var/lib/mysql"
+    links:
+      - mysql:mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: root
+      MYSQL_PASSWORD: nopassword
+      VIRTUAL_HOST: ${HOST}
+      LETSENCRYPT_HOST: ${HOST}
+    depends_on:
+      - mysql
+
+  backups:
+    image: christophetd/duplicacy-autobackup:v1.0
+    container_name: backups
+    restart: always
+    environment:
+      BACKUP_NAME: "${BACKUP_NAME}"
+      BACKUP_LOCATION: "b2://${B2_BUCKET}"
+      BACKUP_SCHEDULE: "${BACKUP_SCHEDULE}"
+      BACKUP_ENCRYPTION_KEY: "${BACKUP_ENCRYPTION_KEY}"
+      B2_ID: "${B2_ID}"
+      B2_KEY: "${B2_KEY}"
+    volumes:
+      - "${DATA_DIR}:/data"
+
+networks:
+  default:
+    external:
+      name: ${NETWORK:-webproxy}
