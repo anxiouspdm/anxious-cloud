@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Set up your DOMAIN
 if [ $# -eq 0 ]; then

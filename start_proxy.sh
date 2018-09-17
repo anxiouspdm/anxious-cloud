@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # This file should be used to prepare and run your WebProxy after set up your .env file
@@ -8,7 +8,7 @@
 # 1. Check if .env file exists
 if [ -e .env ]; then
     source .env
-else 
+else
     echo "Please set up your .env file before starting your environment."
     exit 1
 fi
@@ -51,10 +51,10 @@ if [ ! -z ${USE_NGINX_CONF_FILES+X} ] && [ "$USE_NGINX_CONF_FILES" = true ]; the
         echo "There was an error trying to copy the nginx conf files."
         echo "The webproxy will still work, your custom configuration"
         echo "will not be loaded."
-        echo 
+        echo
         echo "#######################################################"
     fi
-fi 
+fi
 
 # 7. Start proxy
 
