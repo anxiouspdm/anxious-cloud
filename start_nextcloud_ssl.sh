@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker-compose pull
+cd nextcloud
+
 docker-compose up -d
