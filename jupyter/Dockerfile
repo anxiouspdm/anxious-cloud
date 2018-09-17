@@ -5,7 +5,7 @@ RUN conda install jupyterlab
 
 RUN jupyter labextension install @jupyterlab/hub-extension
 
-RUN useradd -m user -p password
+RUN useradd -m jupyter
 
 EXPOSE 80
 CMD jupyterhub --port 80 --Spawner.cmd="jupyter-labhub"

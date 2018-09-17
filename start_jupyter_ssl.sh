@@ -24,4 +24,7 @@ else
     docker run -d -e VIRTUAL_HOST=$DOMAIN -e LETSENCRYPT_HOST=$DOMAIN --network=$SERVICE_NETWORK --name $NAME --restart=always easy-cloud/jupyterhub
 fi
 
+echo "Change password for jupyter user"
+docker exec -it passwd jupyter
+
 exit 0
