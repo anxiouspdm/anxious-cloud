@@ -1,4 +1,4 @@
-FROM continuumio:anaconda3
+FROM continuumio/anaconda3
 
 CMD conda install -c conda-forge jupyterhub
 CMD conda install jupyterlab
