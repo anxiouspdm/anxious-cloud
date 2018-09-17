@@ -2,8 +2,6 @@
 
 NAME=jupyterhub
 
-docker build ./jupyter -t easy-cloud/jupyterhub
-
 # Set up your DOMAIN
 if [ $# -eq 0 ]; then
     echo "Please inform your domain name to run your jupyterhub."
@@ -15,6 +13,9 @@ fi
 
 # Read your .env file
 source .env
+
+# Build image
+docker build ./jupyter -t easy-cloud/jupyterhub
 
 # Testing your proxy
 if [ -z ${SERVICE_NETWORK+X} ]; then
