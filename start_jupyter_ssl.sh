@@ -25,6 +25,6 @@ else
 fi
 
 echo "Change password for jupyter user"
-docker exec -it passwd jupyter
+docker exec -it jupyterhub passwd jupyter
 
 exit 0
