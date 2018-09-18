@@ -19,7 +19,7 @@ docker build ./jupyter -t easy-cloud/jupyterhub
 
 # Testing your proxy
 if [ -z ${SERVICE_NETWORK+X} ]; then
-    docker run -d -v /opt/jupyter:/home:rw -e VIRTUAL_HOST=$DOMAIN -e LETSENCRYPT_HOST=$DOMAIN --network=$NETWORK --name $NAME --restart=always easy-cloud/jupyterhub
+    docker run -d -v /opt/jupyter:/opt/jupyter:rw -e VIRTUAL_HOST=$DOMAIN -e LETSENCRYPT_HOST=$DOMAIN --network=$NETWORK --name $NAME --restart=always easy-cloud/jupyterhub
 else
     docker run -d -e VIRTUAL_HOST=$DOMAIN -e LETSENCRYPT_HOST=$DOMAIN --network=$SERVICE_NETWORK --name $NAME --restart=always easy-cloud/jupyterhub
 fi
