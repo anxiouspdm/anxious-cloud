@@ -18,4 +18,4 @@ RUN /bin/bash -c "source activate jupyter_user_env; ipython kernel install --use
 USER root
 
 EXPOSE 80
-CMD jupyterhub --port 80 --Spawner.cmd="jupyter-labhub" --Spawner.notebook-dir="/opt/jupyter"
+CMD jupyterhub --port 80 --Spawner.cmd="jupyter-labhub" --Spawner.notebook_dir="/opt/jupyter"
