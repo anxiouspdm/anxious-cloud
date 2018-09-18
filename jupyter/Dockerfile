@@ -8,7 +8,7 @@ RUN jupyter labextension install @jupyterlab/hub-extension
 
 RUN useradd -m jupyter
 
-USER appuser
+USER jupyter
 RUN conda create -n jupyter_user_env
 RUN conda install -n jupyter_user_env ipykernel
 
